@@ -27,6 +27,7 @@ class Server:
             try:
                 (client_socket, client_address) = self.listener.accept()
                 self.client_sockets.append(client_socket)
+                self.client_sockets[0].send(pickle.dumps(self.history))
                 threading.Thread(target=self.recv, args=(client_socket,)).start()
                 return
                 
@@ -38,9 +39,10 @@ class Server:
             msg = input("")
 
             msg = "Server : " + msg
+            empiler(self.history, msg.encode("utf-8"))
             for socket in self.client_sockets:
                 try:
-                    empiler(self.history, msg.encode("utf-8"))
+                    
                     pile = pickle.dumps(self.history)
                     socket.send(pile)
                 except socket.error:

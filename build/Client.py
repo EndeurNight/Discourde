@@ -1,4 +1,4 @@
-import socket
+import socket, os, sys
 import threading
 import pickle
 
@@ -7,6 +7,7 @@ from C01_pile import *
 from pathlib import Path
 
 from triFusion import *
+from commands import *
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
@@ -152,8 +153,11 @@ class GUI:
         self.entry_1.bind("<Return>", lambda e :self.send2(self.msg.get()))
 
         self.fonts_list = Combobox(
-            values = getPolice()
+            values = getPolice(),
+            state = "readonly",
         )
+
+        self.fonts_list.bind("<<ComboboxSelected>>", lambda e: self.chat.config(font=(self.fonts_list.get(), 12)))
         self.fonts_list.pack()
 
         self.fonts_list.current(0)
@@ -164,27 +168,41 @@ class GUI:
 
         self.colorPicker.pack()
 
+
+        self.chat.config(font=(self.fonts_list.get(), 12))
         window.resizable(False, False)
         window.mainloop()
 
     def send2(self, message):
+
         if len(message.strip()) <= 0 :
             return
+        elif executeCommand(message):
+            self.msg.set("")
+            return
         
-        self.send(message)
+        
+        message = "Client : " + message
+        self.client.send(message.encode("utf-8"))
         
         self.msg.set("")
 
     def start(self):
         threading.Thread(target=self.recv).start()
 
-    def send(self, msg):
-        msg = "Client : " + msg
-        self.client.send(msg.encode("utf-8"))
+       
 
     def recv(self):
         while True:
-            recv = self.client.recv(1024)            
+            try:
+                recv = self.client.recv(1024)            
+            except ConnectionResetError:
+                print("ConnectionResetError")
+                self.window.destroy()
+                os.system("python Server.py")
+                sys.exit()
+                break
+            
             if recv:
                 try:
                     obj = pickle.loads(recv)
@@ -200,16 +218,6 @@ class GUI:
                     self.chat.insert("1.0", depiler(obj).decode("utf-8") +"\n")
                     self.chat.see("1.0")
 
-                self.chat.config(font=(self.fonts_list.get(), 12))
-
-                
-                #with label
-                # while not pile_vide(obj):                    
-                #     self.chatHistory.set(depiler(obj).decode('utf-8') + "\n" + self.chatHistory.get() )
-
-
-                # print(recv.decode("utf-8"))
-                # self.chatHistory.set(self.chatHistory.get() + "\n" + recv.decode("utf-8"))
     def chooseColor(self):
         self.color = colorchooser.askcolor(title ="Choose color")[1]
         self.chat.config(bg=self.color)
@@ -225,8 +233,6 @@ def getPolice():
     fonts_name = trifusion(fonts_name)
     fonts_name = remove_duplicates(fonts_name)
     return fonts_name
-
-
 
 
 gui = GUI("localhost", 8080)
