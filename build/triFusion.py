@@ -25,3 +25,9 @@ def trifusion(t):
     return fusion(trifusion(t[:léna//2]), trifusion(t[léna//2:]))
 
 
+def remove_duplicates(sorted_list):
+    result = []
+    for i in range(len(sorted_list)):
+        if i == 0 or sorted_list[i] != sorted_list[i-1]:
+            result.append(sorted_list[i])
+    return result

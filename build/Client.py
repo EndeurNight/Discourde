@@ -25,37 +25,6 @@ def relative_to_assets(path: str) -> Path:
 ################################################################################################
 
 
-class Client: 
-    def __init__(self, address, port):
-        self.address = address
-        self.port = port
-        
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.client.connect((self.address, self.port))
-        # threading.Thread(target=self.run).start()
-        threading.Thread(target=self.recv).start()
-        
-        # self.client.close()
-
-    def start(self):
-        threading.Thread(target=self.recv).start()
-
-    def send(self, msg):
-        msg = "Client : " + msg
-        self.client.send(msg.encode("utf-8"))
-
-    def recv(self):
-        while True:
-            recv = self.client.recv(1024)            
-            if recv:
-                obj = pickle.loads(recv)
-                print(obj)
-                # print(recv.decode("utf-8"))
-                # self.chatHistory.set(recv.decode("utf-8"))
-
-
-
-
 
 ################################################################################################
 
@@ -243,26 +212,18 @@ class GUI:
                 # self.chatHistory.set(self.chatHistory.get() + "\n" + recv.decode("utf-8"))
     def chooseColor(self):
         self.color = colorchooser.askcolor(title ="Choose color")[1]
-        self.chat.config("bg", self.color)
-    
-
-def tri_alphabetique(liste):
-    for i in range(len(liste)):
-        for j in range(i+1, len(liste)):
-            if liste[i] > liste[j]:
-                liste[i], liste[j] = liste[j], liste[i]
-    return liste
-
+        self.chat.config(bg=self.color)
 
 
 def getPolice():
     from matplotlib import font_manager
     fonts = font_manager.findSystemFonts()
-    fonts = tri_alphabetique(fonts)
     fonts_name = []
     for font in fonts:
         font_prop = font_manager.FontProperties(fname=font)
         fonts_name.append(font_prop.get_name())
+    fonts_name = trifusion(fonts_name)
+    fonts_name = remove_duplicates(fonts_name)
     return fonts_name
 
 
