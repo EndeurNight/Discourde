@@ -1,4 +1,3 @@
-
 ![Logo](https://zupimages.net/up/23/03/hojv.png)
 
 
@@ -11,10 +10,10 @@ Introducing Discourde, the new way to connect with the world.
 It's like Discord, with steroïds.
 ## Features
 
-- Beautiful UI
-- Automatic hosting backend management 
-- Fast and light
-- Customizable
+- Beautiful UI ✨
+- Automatic hosting backend management 🫥
+- Fast and light ⚡
+- Customizable 🖌️
 ## Startup and installation
 
 First, we clone the project.
@@ -23,7 +22,7 @@ First, we clone the project.
   git clone https://github.com/EndeurNight/Discourde.git
 ```
 
-Since we like risk, we go to the dangerous IdentityGen folder
+Since we like risk, we go to the dangerous Discourde folder
 
 ```
   cd Discourde
@@ -42,21 +41,20 @@ Finally, we run ``main.py`` and pray that it works.
 ```
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://zupimages.net/up/23/04/wun9.png)
+![App Screenshot](https://zupimages.net/up/23/04/iolz.png)
+![App Screenshot](https://zupimages.net/up/23/04/7sjr.png)
 
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
 
 ## Badges and Licences
 
-Discourde is distributed under license [].
+Discourde is distributed under MIT licence.
+See [MIT](https://choosealicense.com/licenses/mit/) for more informations.
+
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+
 
 
 
