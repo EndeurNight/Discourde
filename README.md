@@ -49,12 +49,9 @@ Finally, we run ``main.py`` and pray that it works.
 
 ## Badges and Licences
 
-Discourde is distributed under MIT licence.
-See [MIT](https://choosealicense.com/licenses/mit/) for more informations.
-
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
+Discord is a project done for a computer course.
+Many of the illustrations are the property of Discord Inc.
+Please do not take this seriously, as it was done for educational purposes and without any intention to harm or compete.
 
 
 

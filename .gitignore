@@ -1,4 +1,5 @@
 .DS_Store
+.notebook
 commande.txt
 Tkinter-Designer/
 Chat - GUI/build/__pycache__
