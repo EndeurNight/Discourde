@@ -3,6 +3,10 @@ from tkinter.ttk import Combobox
 from tkinter import *
 from triFusion import *
 
+'''
+Fenetres Tkinter principale avec la fenêtre du chat
+'''
+
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets/frame0")
 

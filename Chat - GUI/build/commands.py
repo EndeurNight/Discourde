@@ -19,9 +19,7 @@ commands = Node("/"
                 )
             )
 
-
-
-def executeCommand(command):
+def executeCommand( command):
     command = command.split(" ")
     node = commands
     if command[0] != "/":
@@ -34,7 +32,6 @@ def executeCommand(command):
             if node.children[i] and node.children[i].commandName ==word:
                 node = node.children[i]
                 break
-
     if node.action:
         node.action()
         return True

@@ -2,7 +2,9 @@ from pathlib import Path
 from tkinter import *
 import socket
 
-
+'''
+Fenêtre Tkinter pour les paramètres du chat (IP, port, pseudo)
+'''
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"./assets/frame3")

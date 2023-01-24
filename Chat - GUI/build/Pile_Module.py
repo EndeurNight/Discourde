@@ -1,10 +1,6 @@
 # coding: utf-8
 
-#
-# Activité 2 du chapitre 1 (p11) : Expressions bien parenthésées
-# Fichier destiné aux élèves mais qu'il n'est pas demandé de comprendre.
-#
-# Implémentation d'une pile avec une liste Python
+'''Implémentation d'une pile.'''
 
 def creer_pile():
     """ Cree une pile vide """
@@ -19,8 +15,6 @@ def sommet(pile):
         Prduit une erreur si la pile est vide """
     assert not pile_vide(pile), 'sommet : pile vide!!'
     return pile[len(pile)-1]
-
-
 
 def empiler(pile, element):
     """ Ajoute élément au sommet de la pile, et retourne la nouvelle pile """

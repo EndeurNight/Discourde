@@ -5,6 +5,10 @@ from Client import Client
 from Server import Server
 from ConfigGui import ConfigGui
 
+'''
+Fenêtre Tkinter pour le menu principal de démarrage de Discourde 
+'''
+
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets/frame1")
