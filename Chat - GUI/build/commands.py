@@ -21,7 +21,7 @@ commands = Node("/"
 
 
 
-def executeCommand( command):
+def executeCommand(command):
     command = command.split(" ")
     node = commands
     if command[0] != "/":
