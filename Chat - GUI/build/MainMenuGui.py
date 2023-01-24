@@ -42,6 +42,8 @@ class MainMenuGui:
         )
 
         canvas.place(x = 0, y = 0)
+
+        
         canvas.create_rectangle(
             234.0,
             211.0,
@@ -61,10 +63,10 @@ class MainMenuGui:
         image_image_1 = PhotoImage(
             file=relative_to_assets("image_1.png"))
         image_1 = canvas.create_image(
-            380.0,
-            358.0,
+            94.0,
+            149.0,
             image=image_image_1
-        )
+        )   
 
         image_image_2 = PhotoImage(
             file=relative_to_assets("image_2.png"))
