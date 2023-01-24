@@ -24,11 +24,11 @@ commands = Node("/"
 def executeCommand( command):
     command = command.split(" ")
     node = commands
-    if command[0] != "!":
+    if command[0] != "/":
         print("command not found")
         return False
     for word in command:
-        if word == "!":
+        if word == "/":
             continue
         for i in range(len(node.children)):
             if node.children[i] and node.children[i].commandName ==word:
