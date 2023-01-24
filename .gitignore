@@ -4,3 +4,4 @@ Tkinter-Designer/
 Chat - GUI/build/__pycache__
 build
 *.pyc
+tokens.txt
