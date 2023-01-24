@@ -43,6 +43,16 @@ class MainMenuGui:
 
         canvas.place(x = 0, y = 0)
 
+            #on place le fond
+        image_image_1 = PhotoImage(
+            file=relative_to_assets("image_1.png"))
+        image_1 = canvas.create_image(
+                307.0,
+                178.0,
+                image=image_image_1
+        )
+
+
         
         canvas.create_rectangle(
             234.0,
@@ -59,22 +69,6 @@ class MainMenuGui:
             339.0,
             fill="#FFFFFF",
             outline="")
-
-        image_image_1 = PhotoImage(
-            file=relative_to_assets("image_1.png"))
-        image_1 = canvas.create_image(
-            94.0,
-            149.0,
-            image=image_image_1
-        )   
-
-        image_image_2 = PhotoImage(
-            file=relative_to_assets("image_2.png"))
-        image_2 = canvas.create_image(
-            557.0,
-            140.0,
-            image=image_image_2
-        )
 
         button_image_1 = PhotoImage(
             file=relative_to_assets("button_1.png"))
@@ -108,13 +102,14 @@ class MainMenuGui:
             height=31.0
         )
 
-        image_image_3 = PhotoImage(
-            file=relative_to_assets("image_3.png"))
-        image_3 = canvas.create_image(
-            301.0,
-            105.0,
-            image=image_image_3
-        )
+        #on place le logo
+        image_image_2 = PhotoImage(
+            file=relative_to_assets("image_2.png"))
+        image_2 = canvas.create_image(
+                313.0,
+                115.0,
+                image=image_image_2
+            )
 
 
         self.window.resizable(False, False)
