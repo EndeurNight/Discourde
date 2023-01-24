@@ -14,7 +14,7 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 class MainMenuGui:
-    def __init__(self, pseudo="Guest", address="127.0.0.0", port=8080):
+    def __init__(self, pseudo="Guest", address="localhost", port=8080):
         self.address = address
         self.port = port
         self.pseudo = pseudo
@@ -22,6 +22,7 @@ class MainMenuGui:
 
         self.window = Tk()
 
+        self.window.title("Chat")
         self.window.geometry("614x356")
         self.window.configure(bg = "#FFFFFF")
 

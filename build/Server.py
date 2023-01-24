@@ -52,18 +52,14 @@ class Server:
         while True:
             data = socket.recv(1024)
             if data:
+                print(data.decode("utf-8"))
                 empiler(self.history, data)
                 pile = pickle.dumps(self.history)
                 self.client_sockets[0].send(pile)
                 # for socket in self.client_sockets:
                 #     socket.send(data)
                 # print(data.decode("utf-8"))
-
-
-           
-
-            
-
                 
-server = Server("", 8080)
+                
+server = Server("localhost", 8080)
 

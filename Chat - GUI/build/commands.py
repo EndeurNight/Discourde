@@ -12,8 +12,7 @@ def setColor():
     print("couleur")
 
 
-
-commands = Node("!"
+commands = Node("/"
                 , Node("clear", action=clear)
                 , Node("set", 
                     Node("color", action=lambda: setColor())
@@ -43,5 +42,3 @@ def executeCommand( command):
         print("command not found")
         return False
 
-
-executeCommand("! set color ")

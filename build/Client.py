@@ -2,7 +2,7 @@ import socket, os, sys
 import threading
 import pickle
 
-from C01_pile import *
+from Pile_Module import *
 
 from pathlib import Path
 
@@ -12,7 +12,7 @@ from commands import *
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import *
-from tkinter.ttk import Combobox
+
 from tkinter import colorchooser
 
 
