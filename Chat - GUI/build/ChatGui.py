@@ -2,6 +2,7 @@ from pathlib import Path
 from tkinter.ttk import Combobox
 from tkinter import *
 from triFusion import *
+from configparser import *
 
 '''
 Fenetres Tkinter principale avec la fenêtre du chat
@@ -20,8 +21,18 @@ class ChatGui:
 
         self.window.geometry("1060x650")
         self.window.configure(bg = "#FFFFFF")
+        self.window.title("Discourde")
+        #self.window.iconbitmap('build/assets\other\logo.ico')
 
         self.msg = StringVar()
+        self.config = ConfigParser()
+        self.config.read('config.ini')
+        self.pseudo = self.config['Utilisateur']['pseudo']
+
+        if self.pseudo == "":
+            self.pseudo = "Anonyme             "
+        if len(self.pseudo) < 20:
+            self.pseudo = self.pseudo + " " * (20 - len(self.pseudo))
 
 
         self.canvas = Canvas(
@@ -39,7 +50,7 @@ class ChatGui:
             333.0,
             624.0,
             anchor="nw",
-            text="Connecté en tant que  : 12345678910111213151 | Discourde (stable) build 2.4",
+            text="Connecté en tant que  : " + self.pseudo + " | Discourde (stable) build 2.4",
             fill="#000000",
             font=("RobotoRoman Regular", 11 * -1)
         )
@@ -69,7 +80,7 @@ class ChatGui:
             581.0,
             image=self.image_image_1
         )
-
+        '''
         self.image_image_2 = PhotoImage(
             file=relative_to_assets("image_2.png"))
         self.image_2 = self.canvas.create_image(
@@ -77,6 +88,7 @@ class ChatGui:
             271.0,
             image=self.image_image_2
         )
+        '''
 
         self.entry_image_1 = PhotoImage(
             file=relative_to_assets("entry_1.png"))
@@ -177,3 +189,6 @@ def getPolice():
     fonts_name = trifusion(fonts_name)
     fonts_name = remove_duplicates(fonts_name)
     return fonts_name
+
+#test de la fenêtre
+#test = ChatGui()

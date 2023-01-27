@@ -29,6 +29,7 @@ class MainMenuGui:
         self.window.title("Chat")
         self.window.geometry("614x356")
         self.window.configure(bg = "#FFFFFF")
+        self.window.title("Discourde")
 
         
         canvas = Canvas(

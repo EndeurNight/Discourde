@@ -1,6 +1,7 @@
 from pathlib import Path
 from tkinter import *
 import socket
+from configparser import *
 
 '''
 Fenêtre Tkinter pour les paramètres du chat (IP, port, pseudo)
@@ -24,6 +25,11 @@ class ConfigGui:
         self.address = StringVar()
         self.port = StringVar()
         self.pseudo = StringVar()
+        self.window.title("Control panel")
+
+        #on initialise le fichier de config
+        self.config = ConfigParser()
+        self.config.read('config.ini')
 
 
 
@@ -186,8 +192,13 @@ class ConfigGui:
 
     def Save(self):
         address = self.address.get()
+        self.config.set("Serveur", "ip", str(address))
         port = int(self.port.get())
+        self.config.set("Serveur", "port", str(port))
         pseudo = self.pseudo.get()
+        self.config.set("Utilisateur", "pseudo", str(pseudo))
+        with open('config.ini', 'w') as configfile:
+            self.config.write(configfile)
         self.window.destroy()
         from MainMenuGui import MainMenuGui
         MainMenuGui(pseudo, address, port)
