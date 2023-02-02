@@ -55,14 +55,14 @@ def add_background(image_path: str, fond_couleur: str, output_path: str):
 
 
 def main(hex):
-    assets_path = ["color_transform/assets_init/chat_rect.png",
-                    "color_transform/assets_init/chat_round.png",
-                    "color_transform/assets_init/text_rect.png",
-                    "color_transform/assets_init/text_round.png"]
-    assets_destination = ["color_transform/assets/entry_2.png",
-                        "color_transform/assets/image_2.png",
-                        "color_transform/assets/image_1.png",
-                        "color_transform/assets/entry_1.png"]
+    assets_path = ["./color_transform/assets_init/chat_rect.png",
+                    "./color_transform/assets_init/chat_round.png",
+                    "./color_transform/assets_init/text_rect.png",
+                    "./color_transform/assets_init/text_round.png"]
+    assets_destination = ["./color_transform/assets_init/entry_2.png",
+                        "./color_transform/assets_init/image_2.png",
+                        "./color_transform/assets_init/image_1.png",
+                        "./color_transform/assets_init/entry_1.png"]
 
     for i in range(len(assets_path)):
         change_color(assets_path[i], assets_destination[i], hex)
@@ -73,5 +73,5 @@ def main(hex):
 
 if __name__ == "__main__":
     #couleur = input("Entrez la couleur en hexadécimal (sans le #): ")
-    couleur = "45f2a5"
+    couleur = "00FBFF"
     main(couleur)
