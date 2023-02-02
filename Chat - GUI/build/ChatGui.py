@@ -3,6 +3,7 @@ from tkinter.ttk import Combobox
 from tkinter import *
 from triFusion import *
 from configparser import *
+from Pile_Module import *
 
 '''
 Fenetres Tkinter principale avec la fenêtre du chat
@@ -180,6 +181,13 @@ class ChatGui:
 
     def start(self):
         print("starting")
+
+
+    def afficheMessage(self,obj):
+        # Réecrit les messages
+        while not pile_vide(obj):
+            self.chat.insert("1.0", depiler(obj).decode("utf-8") +"\n")
+            self.chat.see("end")
 
 def getPolice():
     from matplotlib import font_manager

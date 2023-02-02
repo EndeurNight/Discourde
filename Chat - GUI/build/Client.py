@@ -25,6 +25,12 @@ class Client(ChatGui):
         self.port = port
         self.pseudo = pseudo
 
+
+
+        self.index = 0;
+
+        
+
         # Création d'un socket pour se connecter au serveur
 
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -63,7 +69,7 @@ class Client(ChatGui):
         while True:
             try:
                 #essaie de recevoir un message
-                recv = self.serverSocket.recv(1024)            
+                recv = self.serverSocket.recv(1024)   #taille en byte du buffer          
             except ConnectionResetError:
                 #si le serveur se déconnecte, on ferme la fenêtre et le client devient serveur
                 print("ConnectionResetError")
@@ -76,17 +82,13 @@ class Client(ChatGui):
             
             if recv:
                 # Désérialisation du message
-                obj = pickle.loads(recv)
-                
+                obj = pickle.loads(recv)             
 
 
                 # Efface les messages précédents
                 self.chat.delete(1.0, "end")
 
-                # Réecrit les messages
-                while not pile_vide(obj):
-                    self.chat.insert("1.0", depiler(obj).decode("utf-8") +"\n")
-                    self.chat.see("end")
+                
 
 
 
