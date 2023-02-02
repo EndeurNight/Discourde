@@ -4,6 +4,7 @@ from tkinter import *
 from Client import Client
 from Server import Server
 from ConfigGui import ConfigGui
+from configparser import *
 
 '''
 Fenêtre Tkinter pour le menu principal de démarrage de Discourde 
@@ -29,6 +30,11 @@ class MainMenuGui:
         self.window.title("Chat")
         self.window.geometry("614x356")
         self.window.configure(bg = "#FFFFFF")
+        self.window.title("Discourde")
+
+        self.configfile = ConfigParser()
+        self.configfile.read("config.ini")
+        self.mode = self.configfile["Serveur"]["mode"]
 
         
         canvas = Canvas(
@@ -121,11 +127,33 @@ class MainMenuGui:
             listener.bind((address,port))
             listener.close()
             self.window.destroy()
-            print("pas utilisé")
+            print("")
+            print("Chat configuration system not used.")
+            print("Switching to server mode...")
+            self.configfile.set("Serveur", "mode", "server")
+            with open("config.ini", "w") as configfile:
+                self.configfile.write(configfile)
+            print("Server configuration:")
+            print("Address: " + address)
+            print("Port: " + str(port))
+            print("")
+            print("Starting server... (Press Ctrl+C to cancel)")
+    
             Server(self.pseudo, self.address, self.port)
             
         except:
-            print("deja connecte")
+            print("")
+            print("Chat configuration system used.")
+            print("Switching to client mode...")
+            self.configfile.set("Serveur", "mode", "client")
+            with open("config.ini", "w") as configfile:
+                self.configfile.write(configfile)
+            print("Client configuration:")
+            print("Address: " + address)
+            print("Port: " + str(port))
+            print("")
+            print("Waiting for server... (Press Ctrl+C to cancel)")
+
             self.window.destroy()
             Client(self.pseudo, self.address, self.port)
             

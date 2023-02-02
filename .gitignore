@@ -7,3 +7,9 @@ build
 *.pyc
 tokens.txt
 tokens.txt
+__pycache__
+Chat - GUI\build\__pycache__
+Chat - GUI/build/__pycache__
+Chat - GUI/build/__pycache__/ConfigGui.cpython-310.pyc
+Chat - GUI/build/__pycache__/Client.cpython-310.pyc
+Chat - GUI/build/__pycache__/MainMenuGui.cpython-310.pyc

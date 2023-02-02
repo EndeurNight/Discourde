@@ -22,6 +22,7 @@ window = Tk()
 
 window.geometry("614x356")
 window.configure(bg = "#FFFFFF")
+window.title("Discourde theme settings")
 
 
 canvas = Canvas(
