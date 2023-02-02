@@ -32,10 +32,9 @@ class MainMenuGui:
         self.window.configure(bg = "#FFFFFF")
         self.window.title("Discourde")
 
-        config = ConfigParser()
-        config.read("config.ini")
-
-        self.mode = config["Serveur"]["mode"]
+        self.configfile = ConfigParser()
+        self.configfile.read("config.ini")
+        self.mode = self.configfile["Serveur"]["mode"]
 
         
         canvas = Canvas(
@@ -131,7 +130,9 @@ class MainMenuGui:
             print("")
             print("Chat configuration system not used.")
             print("Switching to server mode...")
-            self.config.set("Serveur", "mode", "server")
+            self.configfile.set("Serveur", "mode", "server")
+            with open("config.ini", "w") as configfile:
+                self.configfile.write(configfile)
             print("Server configuration:")
             print("Address: " + address)
             print("Port: " + str(port))
@@ -144,7 +145,9 @@ class MainMenuGui:
             print("")
             print("Chat configuration system used.")
             print("Switching to client mode...")
-            self.config.set("Serveur", "mode", "client")
+            self.configfile.set("Serveur", "mode", "client")
+            with open("config.ini", "w") as configfile:
+                self.configfile.write(configfile)
             print("Client configuration:")
             print("Address: " + address)
             print("Port: " + str(port))

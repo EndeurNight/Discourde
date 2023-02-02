@@ -37,25 +37,32 @@ class ConfigGui:
         self.address.set(self.config['Serveur']['ip'])
         self.port.set(self.config['Serveur']['port'])
 
+        print("\r")
         print("Opening config window...")
         print("Actual config:")
         if self.pseudo.get() == "":
-            print("Pseudo is empty, using default value")
+            print("Pseudo is empty, using default value (Guest)")
             self.pseudo.set("Guest")
         else:
             print("Pseudo: " + self.pseudo.get())
         
         if self.address.get() == "":
-            print("Address is empty, using default value")
+            print("Address is empty, using default value (localhost)")
             self.address.set("localhost")
         else:
             print("Address: " + self.address.get())
         
         if self.port.get() == "":
-            print("Port is empty, using default value")
+            print("Port is empty, using default value (8080)")
             self.port.set("8080")
         else :
             print("Port: " + self.port.get())
+        
+        with open('config.ini', 'w') as configfile:
+            self.config['Serveur']['ip'] = self.address.get()
+            self.config['Serveur']['port'] = self.port.get()
+            self.config['Utilisateur']['pseudo'] = self.pseudo.get()
+            self.config.write(configfile)
 
 
 

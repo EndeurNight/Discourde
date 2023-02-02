@@ -20,7 +20,7 @@ if __name__ == "__main__":
     config.read("config.ini")
     if not config.has_section("Utilisateur"):
         config.add_section("Utilisateur")
-        config.set("Utilisateur", "pseudo", "Anonyme")
+        config.set("Utilisateur", "pseudo", "")
         config.set("Utilisateur", "couleur", "#000000")
         config.set("Utilisateur", "couleur2", "#000000")
         config.set("Utilisateur", "couleur3", "#000000")
@@ -29,9 +29,9 @@ if __name__ == "__main__":
             config.write(configfile)
     if not config.has_section("Serveur"):
         config.add_section("Serveur")
-        config.set("Serveur", "ip", "localhost")
-        config.set("Serveur", "port", "8080")
-        config.set("Serveur", "mode", "client")
+        config.set("Serveur", "ip", "")
+        config.set("Serveur", "port", "")
+        config.set("Serveur", "mode", "")
         with open("config.ini", "w") as configfile:
             config.write(configfile)
     print("Config file checked")

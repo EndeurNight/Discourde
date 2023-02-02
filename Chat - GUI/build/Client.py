@@ -88,6 +88,5 @@ class Client(ChatGui):
                     self.chat.insert("1.0", depiler(obj).decode("utf-8") +"\n")
                     self.chat.see("end")
 
-    
 
 

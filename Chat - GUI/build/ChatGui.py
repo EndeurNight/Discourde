@@ -33,6 +33,8 @@ class ChatGui:
             self.pseudo = "Anonyme             "
         if len(self.pseudo) < 20:
             self.pseudo = self.pseudo + " " * (20 - len(self.pseudo))
+        
+        self.mode = self.config['Serveur']['mode']
 
 
         self.canvas = Canvas(
