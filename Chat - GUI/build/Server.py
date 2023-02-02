@@ -47,7 +47,7 @@ class Server(ChatGui):
                 return
                 
             except socket.error:
-                sys.exit("erreur de connection")
+                sys.exit("Connection error")
 
     def send(self, message):
         # Vérifie si le message est vide

@@ -31,6 +31,32 @@ class ConfigGui:
         self.config = ConfigParser()
         self.config.read('config.ini')
 
+        self.address.set(self.config['Utilisateur']['pseudo'])
+        self.pseudo.set(self.config['Utilisateur']['pseudo'])
+        self.pseudo.set(self.pseudo.get().replace(" ", ""))
+        self.address.set(self.config['Serveur']['ip'])
+        self.port.set(self.config['Serveur']['port'])
+
+        print("Opening config window...")
+        print("Actual config:")
+        if self.pseudo.get() == "":
+            print("Pseudo is empty, using default value")
+            self.pseudo.set("Guest")
+        else:
+            print("Pseudo: " + self.pseudo.get())
+        
+        if self.address.get() == "":
+            print("Address is empty, using default value")
+            self.address.set("localhost")
+        else:
+            print("Address: " + self.address.get())
+        
+        if self.port.get() == "":
+            print("Port is empty, using default value")
+            self.port.set("8080")
+        else :
+            print("Port: " + self.port.get())
+
 
 
         self.canvas = Canvas(
@@ -67,19 +93,7 @@ class ConfigGui:
             273.0,
             image=self.entry_image_1
         )
-        self.entry_1 = Entry(
-            bd=0,
-            bg="#FFFFFF",
-            fg="#000716",
-            highlightthickness=0,
-            textvariable=self.pseudo
-        )
-        self.entry_1.place(
-            x=44.0,
-            y=262.0,
-            width=307.0,
-            height=20.0
-        )
+
 
         self.entry_image_2 = PhotoImage(
             file=relative_to_assets("entry_2.png"))
@@ -88,20 +102,6 @@ class ConfigGui:
             162.0,
             image=self.entry_image_2
         )
-        self.entry_2 = Entry(
-            bd=0,
-            bg="#FFFFFF",
-            fg="#000716",
-            highlightthickness=0,
-            textvariable=self.port
-        )
-        self.entry_2.place(
-            x=257.0,
-            y=150.0,
-            width=94.0,
-            height=22.0
-        )
-
         self.entry_image_3 = PhotoImage(
             file=relative_to_assets("entry_3.png"))
         self.entry_bg_3 = self.canvas.create_image(
@@ -109,20 +109,6 @@ class ConfigGui:
             162.0,
             image=self.entry_image_3
         )
-        self.entry_3 = Entry(
-            bd=0,
-            bg="#FFFFFF",
-            fg="#000716",
-            highlightthickness=0,
-            textvariable=self.address
-        )
-        self.entry_3.place(
-            x=36.0,
-            y=150.0,
-            width=165.0,
-            height=22.0
-        )
-
         self.image_image_1 = PhotoImage(
             file=relative_to_assets("image_1.png"))
         self.image_1 = self.canvas.create_image(
@@ -146,6 +132,51 @@ class ConfigGui:
             163.0,
             image=self.image_image_3
         )
+        
+
+        
+        self.entry_3 = Entry(
+            bd=0,
+            bg="#FFFFFF",
+            fg="#000716",
+            highlightthickness=0,
+            textvariable=self.address
+        )
+        self.entry_3.place(
+            x=36.0,
+            y=150.0,
+            width=165.0,
+            height=22.0
+        )
+
+        self.entry_2 = Entry(
+            bd=0,
+            bg="#FFFFFF",
+            fg="#000716",
+            highlightthickness=0,
+            textvariable=self.port
+        )
+        self.entry_2.place(
+            x=257.0,
+            y=150.0,
+            width=94.0,
+            height=22.0
+        )
+
+        self.entry_1 = Entry(
+            bd=0,
+            bg="#FFFFFF",
+            fg="#000716",
+            highlightthickness=0,
+            textvariable=self.pseudo
+            )
+        
+        self.entry_1.place(
+            x=44.0,
+            y=262.0,
+            width=307.0,
+            height=20.0
+        )
 
         self.edit_button_image = PhotoImage(
             file=relative_to_assets("button_1.png"))
@@ -153,7 +184,7 @@ class ConfigGui:
             image=self.edit_button_image,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print(self.address.get() + self.port.get() +self.pseudo.get()),
+                       command=lambda: print("Currently not working. We are working on it."),            #command=lambda: print(self.address.get() + self.port.get() +self.pseudo.get()),
             relief="flat"
         )
         self.edit_button.place(
@@ -193,12 +224,16 @@ class ConfigGui:
     def Save(self):
         address = self.address.get()
         self.config.set("Serveur", "ip", str(address))
+        assert self.port.get().isdigit(), "Port must be a number"
         port = int(self.port.get())
         self.config.set("Serveur", "port", str(port))
         pseudo = self.pseudo.get()
+        assert pseudo != "", "Pseudo must not be empty"
+        assert pseudo.isalnum(), "Pseudo must be alphanumeric"
         self.config.set("Utilisateur", "pseudo", str(pseudo))
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
+        print("Config saved")
         self.window.destroy()
         from MainMenuGui import MainMenuGui
         MainMenuGui(pseudo, address, port)

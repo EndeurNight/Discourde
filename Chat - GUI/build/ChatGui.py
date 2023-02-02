@@ -27,7 +27,7 @@ class ChatGui:
         self.msg = StringVar()
         self.config = ConfigParser()
         self.config.read('config.ini')
-        self.pseudo = self.config['Utilisateur']['pseudo']
+
 
         if self.pseudo == "":
             self.pseudo = "Anonyme             "
@@ -50,7 +50,7 @@ class ChatGui:
             333.0,
             624.0,
             anchor="nw",
-            text="Connecté en tant que  : " + self.pseudo + " | Discourde (stable) build 2.4",
+            text="Connecté en tant que  : " + self.pseudo + " | Discourde (" + self.mode + ") build 2.4",
             fill="#000000",
             font=("RobotoRoman Regular", 11 * -1)
         )

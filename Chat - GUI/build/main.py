@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
                                                 
     """)
-    print("Starting Discourde... Please wait")
+    print("Initializing...")
 
     #on créer le fichier de configuration. Il aura une section "Utilisateur", avec 4 paramètres de couleur ainsi que le pseudo.
     config = ConfigParser()
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     config.read("config.ini")
     if not config.has_section("Utilisateur"):
         config.add_section("Utilisateur")
-        config.set("Utilisateur", "pseudo", "[Pseudo non défini]")
+        config.set("Utilisateur", "pseudo", "Anonyme")
         config.set("Utilisateur", "couleur", "#000000")
         config.set("Utilisateur", "couleur2", "#000000")
         config.set("Utilisateur", "couleur3", "#000000")
@@ -29,8 +29,9 @@ if __name__ == "__main__":
             config.write(configfile)
     if not config.has_section("Serveur"):
         config.add_section("Serveur")
-        config.set("Serveur", "ip", "0.0.0.0")
-        config.set("Serveur", "port", "0")
+        config.set("Serveur", "ip", "localhost")
+        config.set("Serveur", "port", "8080")
+        config.set("Serveur", "mode", "client")
         with open("config.ini", "w") as configfile:
             config.write(configfile)
     print("Config file checked")

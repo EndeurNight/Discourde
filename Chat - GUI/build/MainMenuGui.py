@@ -4,6 +4,7 @@ from tkinter import *
 from Client import Client
 from Server import Server
 from ConfigGui import ConfigGui
+from configparser import *
 
 '''
 Fenêtre Tkinter pour le menu principal de démarrage de Discourde 
@@ -30,6 +31,11 @@ class MainMenuGui:
         self.window.geometry("614x356")
         self.window.configure(bg = "#FFFFFF")
         self.window.title("Discourde")
+
+        config = ConfigParser()
+        config.read("config.ini")
+
+        self.mode = config["Serveur"]["mode"]
 
         
         canvas = Canvas(
@@ -122,11 +128,29 @@ class MainMenuGui:
             listener.bind((address,port))
             listener.close()
             self.window.destroy()
-            print("pas utilisé")
+            print("")
+            print("Chat configuration system not used.")
+            print("Switching to server mode...")
+            self.config.set("Serveur", "mode", "server")
+            print("Server configuration:")
+            print("Address: " + address)
+            print("Port: " + str(port))
+            print("")
+            print("Starting server... (Press Ctrl+C to cancel)")
+    
             Server(self.pseudo, self.address, self.port)
             
         except:
-            print("deja connecte")
+            print("")
+            print("Chat configuration system used.")
+            print("Switching to client mode...")
+            self.config.set("Serveur", "mode", "client")
+            print("Client configuration:")
+            print("Address: " + address)
+            print("Port: " + str(port))
+            print("")
+            print("Waiting for server... (Press Ctrl+C to cancel)")
+
             self.window.destroy()
             Client(self.pseudo, self.address, self.port)
             
