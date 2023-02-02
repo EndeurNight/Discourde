@@ -88,6 +88,8 @@ class Client(ChatGui):
                 # Efface les messages précédents
                 self.chat.delete(1.0, "end")
 
+                self.afficheMessage(obj)
+
                 
 
 
