@@ -5,8 +5,9 @@ class Node:
         self.action = action
 
 
-def clear():
+def clear(gui):
     print("clearing in progress")
+    gui.chat.delete(1.0, "end")
 
 def setColor():
     print("couleur")
@@ -19,7 +20,7 @@ commands = Node("/"
                 )
             )
 
-def executeCommand( command):
+def executeCommand(command, gui):
     command = command.split(" ")
     node = commands
     if command[0] != "/":
@@ -33,7 +34,7 @@ def executeCommand( command):
                 node = node.children[i]
                 break
     if node.action:
-        node.action()
+        node.action(gui)
         return True
     else:
         print("command not found")

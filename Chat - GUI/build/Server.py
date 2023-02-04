@@ -54,7 +54,7 @@ class Server(ChatGui):
         if len(message.strip()) <= 0 :
             return
         # Vérifie si le message est une commande
-        elif executeCommand(message):
+        elif executeCommand(message, self):
             self.msg.set("")
             return
         
@@ -87,7 +87,5 @@ class Server(ChatGui):
         print(obj is self.history)
         self.chat.delete(1.0, "end")
 
-        while not pile_vide(obj):
-            self.chat.insert("1.0", depiler(obj).decode("utf-8") +"\n")
-            self.chat.see("1.0")
+        self.afficheMessage(obj)
                 

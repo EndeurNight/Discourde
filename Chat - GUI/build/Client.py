@@ -49,7 +49,7 @@ class Client(ChatGui):
             return
 
          # Vérifie si le message est une commande
-        elif executeCommand(message):
+        elif executeCommand(message, self):
             self.msg.set("")
             return
         
