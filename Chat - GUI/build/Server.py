@@ -29,6 +29,8 @@ class Server(ChatGui):
         self.listener.bind((self.address, self.port))
         self.listener.listen(1)
         
+        self.index = 0
+        self.client_index = 0
 
         #Initialisation de la fenêtre (voir ChatGui.py)
         super().__init__()
@@ -74,10 +76,15 @@ class Server(ChatGui):
         # Puis les renvoie au client pour qu'il puisse les afficher
         while True:            
             data = socket.recv(1024)
+            data = pickle.loads(data)
             if data:
-                empiler(self.history, data)
+                empiler(self.history, data[1])
+                self.client_index = data[0] + 1
                 self.refresh()
-                pile = pickle.dumps(self.history)
+                pile = pickle.dumps(self.history)   
+
+                 
+
                 self.client_sockets.send(pile)
 
 

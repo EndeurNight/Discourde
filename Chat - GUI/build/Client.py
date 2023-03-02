@@ -55,7 +55,9 @@ class Client(ChatGui):
         
         # Sinon préfixe le pseudo à la message et l'envoie au serveur
         message = f"{self.pseudo} : " + message
-        self.serverSocket.send(message.encode("utf-8"))
+
+        data = pickle.dumps((self.index, message.encode("utf-8")))
+        self.serverSocket.send(data)
         
         self.msg.set("")
 
