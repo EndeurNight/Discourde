@@ -9,6 +9,8 @@ from tkinter.ttk import Combobox
 from tkinter import colorchooser
 from Pile_Module import *
 from commands import *
+from tqdm import tqdm
+from time import sleep
 
 
 #Classe qui héberge la discussion et permet aussi de parler en toute sécurité à un client
@@ -50,6 +52,21 @@ class Server(ChatGui):
                 
             except socket.error:
                 sys.exit("Connection error")
+    
+    '''
+        for i in tqdm(range(20), desc='Listening for clients on port {self.port}...'):
+            sleep(1)
+            try :
+                (client_socket, client_address) = self.listener.accept()
+                self.client_sockets = client_socket
+                self.client_sockets.send(pickle.dumps(self.history))
+                threading.Thread(target=self.recv, args=(client_socket,)).start()
+                return
+            except socket.error:
+                sys.exit("Connection error")
+        raise Exception("Timed out while listening for clients")
+    '''
+    
 
     def send(self, message):
         # Vérifie si le message est vide
