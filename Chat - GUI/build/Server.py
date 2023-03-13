@@ -81,7 +81,7 @@ class Server(ChatGui):
                 empiler(self.history, data[1])
                 self.client_index = data[0] + 1
                 self.refresh()
-                pile = pickle.dumps(self.history)   
+                pile = pickle.dumps(self.history)
 
                  
 
